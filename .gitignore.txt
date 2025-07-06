@@ -1,0 +1,3 @@
+part1_task1_2_templates/
+temp/
+*.bash
