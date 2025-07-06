@@ -1,0 +1,67 @@
+function[mat, fem_struct] = update_fem_file(fem_template, fem_result, mat)
+
+    % read .fem file
+    fem_struct = read_fem(fem_template);
+
+    % convert bulk data to numeric vlaues 
+    fem_mat = fem_cell2num(fem_struct);
+    
+    % replace panel thickness
+    for i = 1:10
+        fem_struct.BULK.PSHELL{i,1}{1,3} = mat.panel.t(i);
+    end
+    % replace stringer dimensions
+    for i = 1:9
+        fem_struct.BULK.PBARL{i,1}{2,1} = num2str(mat.stringer.dim1(i));
+        fem_struct.BULK.PBARL{i,1}{2,2} = num2str(mat.stringer.dim2(i));
+        fem_struct.BULK.PBARL{i,1}{2,3} = num2str(mat.stringer.dim3(i));
+        fem_struct.BULK.PBARL{i,1}{2,4} = num2str(mat.stringer.dim4(i));
+    end
+  
+    % replace offsets
+    for i = 1:10
+        fem_struct.BULK.CQUAD4{3*k,1}{1,8} = mat.panel.ZOFFS(i);
+        fem_struct.BULK.CQUAD4{3*k-1,1}{1,8} = mat.panel.ZOFFS(i);
+        fem_struct.BULK.CQUAD4{3*k-2,1}{1,8} = mat.panel.ZOFFS(i);
+    end
+
+    for i = 1:9
+        fem_struct.BULK.CBAR{k*3,1}{2,5} = mat.stringer.z(i);
+        fem_struct.BULK.CBAR{k*3,1}{2,8} = mat.stringer.z(i);
+        fem_struct.BULK.CBAR{k*3-1,1}{2,5} = mat.stringer.z(i);
+        fem_struct.BULK.CBAR{k*3-1,1}{2,8} = mat.stringer.z(i);
+        fem_struct.BULK.CBAR{k*3-2,1}{2,5} = mat.stringer.z(i);
+        fem_struct.BULK.CBAR{k*3-2,1}{2,8} = mat.stringer.z(i);
+    end
+  
+    % replace E-modulus
+    fem_struct.BULK.MAT1{1,1}{1,2} = mat.E_avg;
+
+    % replace load cases
+    fem_struct.SUBCASE(1).LABEL = 'LC1';
+    fem_struct.SUBCASE(1).LOAD = num2str(mat.lc1);
+
+    fem_struct.SUBCASE(2).LABEL = 'LC2';
+    fem_struct.SUBCASE(2).LOAD = num2str(mat.lc2);
+
+    fem_struct.SUBCASE(3).LABEL = 'LC3';
+    fem_struct.SUBCASE(3).LOAD = num2str(mat.lc3);
+
+
+%{    
+    % convert back to cell
+    fem_cell = fem_num2cell(fem_mat, 'fem');
+
+    % rebuild bulk structure
+    old_fields = fieldnames(fem_cell);
+    new_fields = strrep(old_fields, '_MAT', '');
+    map = containers.Map(old_fields, new_fields);
+    tmp = reshape(values(map, old_fields), 1, []);
+    tmp(2,:) = num2cell(permute(struct2cell(fem_cell), [3,1,2]), 1);
+    fem_struct.BULK = reshape(struct(tmp{:}), size(fem_cell));
+
+    % write modified .fem file
+    print_fem(fem_struct, fem_result, 0);
+%}
+ 
+end

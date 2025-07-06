@@ -1,0 +1,28 @@
+<root>
+   <resource>
+       <result file="C:/Users/sihol/OneDrive/Desktop/ASE/MATLAB/RESULT FILES/ASE_Project2025_SuperPanel_3787415_redesign.h3d" tag="f2"/>
+   </resource>
+   <settings csvseparator="," omega*t="0" numericprecision="12" idpoolout="NO" poissonsratio="0.500000" numericformat="Fixed" printheader="Yes"/>
+   <query id="1" type="Report">
+       <hierarchy tag="f2">
+           <loadcase id="1" stepindex="0"/>
+           <loadcase id="2" stepindex="0"/>
+           <loadcase id="3" stepindex="0"/>
+       </hierarchy>
+       <result type="Element Stresses (2D &amp; 3D)" components="XX XY YY " system="" layers="Mid," corner="" averaging=""/>
+       <entity type="Elements" selectionmode="All" selectionlist=""/>
+       <sort by="By ID Increasing" type="By Load Case"/>
+       <output file="C:/Users/sihol/OneDrive/Desktop/ASE/MATLAB/Panel.csv" complexfilter="" format="Textfile"/>
+   </query>
+   <query id="2" type="Report">
+       <hierarchy tag="f2">
+           <loadcase id="1" stepindex="0"/>
+           <loadcase id="2" stepindex="0"/>
+           <loadcase id="3" stepindex="0"/>
+       </hierarchy>
+       <result type="Element Stresses (1D):CBAR/CBEAM Axial Stress" components="" system="" layers="" corner="" averaging=""/>
+       <entity type="Elements" selectionmode="All" selectionlist=""/>
+       <sort by="By ID Increasing" type="By Load Case"/>
+       <output file="C:/Users/sihol/OneDrive/Desktop/ASE/MATLAB/Stringer.csv" complexfilter="" format="Textfile"/>
+   </query>
+</root>

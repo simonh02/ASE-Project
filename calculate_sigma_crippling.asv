@@ -1,0 +1,53 @@
+function[mat, x1, x2, x3, a1, a2, a3, b1, b2] = calculate_sigma_crippling(mat)
+
+    a1 = mat.stringer.dim1;
+    a2 = mat.stringer.dim3;
+    t = mat.stringer.dim2;
+
+
+    b1 = a1 - t;
+    b2 = a2 - t;
+
+    K = 3.60;
+
+    x1 = (b1 ./ t) .* sqrt(mat.yield_strength / (mat.E_basis*K));
+    x2 = (b1 ./ t) .* sqrt(mat.yield_strength / (mat.E_basis*K));
+    x3 = (b2 ./ t) .* sqrt(mat.yield_strength / (mat.E_basis*K));  
+   
+
+    alpha = zeros(1, 9);
+
+    a1 = get_alpha(x1);
+    a2 = get_alpha(x2);
+    a3 = get_alpha(x3);
+
+
+    sig_crip1 = a1 * mat.yield_strength;
+    sig_crip2 = a2 * mat.yield_strength;
+    sig_crip3 = a3 * mat.yield_strength;
+   
+
+    mat.sigma_cripp = ((sig_crip1 .* b1 .* t) + (sig_crip2 .* b1 .* t) + (sig_crip3 .* b2 .* t)) ...
+        ./ (b1.*t + b1.*t + b2.*t);
+
+
+    mat.sigma_crippling = min(mat.sigma_cripp, mat.yield_strength);
+    
+
+end
+
+
+function alpha  = get_alpha(x)
+
+    bool1 = (x > 1.633);
+    bool2 = (x <= 1.633) && (x > 1.095);
+    bool3 = (x <= 1.095) && (x >= 0.4);
+
+    alpha = ...
+        bool1 .* (0.69 ./ (x.^0.75)) + ...
+        bool2 .* (0.78 ./ x) + ...
+        bool3 .* (1.4 - 0.628 * x);
+
+end
+
+

@@ -1,0 +1,156 @@
+ ************************************************************************
+ **                                                                    **
+ **                                                                    **
+ **                    Altair OptiStruct(TM) 2023.1                    **
+ **                                                                    **
+ **             Advanced Engineering Analysis, Design and              **
+ **        Optimization Software from Altair Engineering, Inc.         **
+ **                                                                    **
+ **   OptiStruct includes an enhanced proprietary version of NASTRAN   **
+ **                                                                    **
+ **                                                                    **
+ **             Windows 10  (Build 9200)  DESKTOP-IJKBFLG              **
+ **          4 CPU:  Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz          **
+ **                    9288 MB RAM,  18469 MB swap                     **
+ **                                                                    **
+ ** Build: 1195093uwn33231_Ce64RB6s8UH14M:223579-000  4600400400000000 **
+ ************************************************************************
+ **  COPYRIGHT (C) 1996-2023                 Altair Engineering, Inc.  **
+ ** All Rights Reserved.  Copyright notice does not imply publication. **
+ **         Contains trade secrets of Altair Engineering, Inc.         **
+ ** Decompilation or disassembly of this software strictly prohibited. **
+ ************************************************************************
+ 
+  
+ *** OptiStruct defaults set from:
+   install config file: C:/PROGRA~1/Altair/2023.1/hwsolvers/optistruct.cfg.
+  
+  
+ NOTE # 9199
+ MSGLMT=STRICT is active, all messages will be printed unless there is
+ a subsequent MSGLMT definition to limit error or warning messages.
+ You can also suppress some less important warning messages by use of
+  MSGLMT=BRIEF or UNREF (in config file or in the input data).
+  
+ NOTE # 1929
+ Created RAM scratch area: total size 10 MB.
+  
+ *** WARNING # 1284
+ No SPC or SUPORT1 data specified for static SUBCASE 1.
+ Make sure the model is constrained otherwise.
+  
+  
+  
+ *** ERROR # 720 ***
+ Invalid static SUBCASE that has no load or enforced displacement.
+     subcase id = 1
+ 
+
+************************************************************************
+
+OPTIMIZATION FILE AND PARAMETER INFORMATION :
+---------------------------------------------
+
+  FEM model file               : test.fem
+  Output files prefix          : test
+  Model read from files:
+ (*1)	    test.fem
+
+************************************************************************
+
+ 
+
+************************************************************************
+
+FINITE ELEMENT MODEL DATA INFORMATION :
+---------------------------------------
+
+  Total # of Grids (Structural)        :        45
+  Total # of Elements                  :        63
+  Total # of Rigid Elements            :         1
+  Total # of Rigid Element Constraints :         6
+  Total # of Degrees of Freedom        :       270
+  (Structural)
+  Total # of Non-zero Stiffness Terms  :      5733
+
+ 
+  Element Type Information
+  ------------------------
+
+   CBAR     Elements   :       27
+   CQUAD4   Elements   :       30     
+   CROD     Elements   :        6     
+
+  Load and Boundary Information
+  -----------------------------
+
+
+  Material and Property Information
+  ---------------------------------
+
+   PBAR   Cards      :         9
+   PSHELL Cards      :        10
+   PROD   Cards      :         1
+   MAT1   Cards      :         1
+
+************************************************************************
+
+ 
+
+************************************************************************
+
+ ***** ERROR ENCOUNTERED BEFORE COMPLETING THE CHECK RUN *****
+ Static Memory (RAM) Allocated in Preprocessor           :     800 MB
+   In addition a ramdisk area was allocated in memory    :      10 MB
+ Estimated Minimum Memory (RAM) for the check run        :       1 MB
+
+************************************************************************
+
+  
+ This error occurs in module "prpdrv".
+
+************************************************************************
+
+RESOURCE USAGE INFORMATION
+--------------------------
+
+ MAXIMUM MEMORY USED                                       800 MB
+   IN ADDITION     10 MB RAMDISK AREA WAS ALLOCATED IN MEMORY
+ MAXIMUM DISK SPACE USED                                     1 MB
+
+************************************************************************
+
+
+************************************************************************
+
+COMPUTE TIME INFORMATION
+------------------------
+
+ EXECUTION STARTED                         Sat Jul 05 21:42:29 2025    
+ EXECUTION COMPLETED                       Sat Jul 05 21:42:37 2025    
+ ELAPSED TIME                                         00:00:07
+ CPU TIME                                             00:00:00
+
+************************************************************************
+
+  
+ 
+ *** PROGRAM STOPPED: FATAL ERROR(s) ENCOUNTERED.
+ 
+                        ***** END OF REPORT *****
+  
+ For OptiStruct Community Forum, go to the URL:
+ http://www.altair.com/optistruct-community
+ For Altair Community Knowledge Base, go to the URL:
+ http://www.altair.com/knowledge
+  
+************************************************************************
+  
+ A fatal error has been detected during input processing:
+  
+  *** ERROR # 720 ***
+  Invalid static SUBCASE that has no load or enforced displacement.
+      subcase id = 1
+  
+  
+************************************************************************
